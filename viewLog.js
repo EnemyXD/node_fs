@@ -20,13 +20,23 @@ input.on("line", (args) => {
   console.log(`Всего игр: ${splitData.length}`);
   splitData.map((value) => {
     const newValue = value.split(".");
-    newValue[1] === "1"
-      ? playerWin++
-      : newValue[1] === "0"
-      ? playerLoose++
-      : newValue === "2" && playerDumb++;
+    newValue[1] == 0 && playerLoose++;
+    newValue[1] == 1 && playerWin++;
+    newValue[1] == 2 && playerDumb++;
   });
-  console.log(`Всего игрок угадал: ${playerWin}.`);
-  console.log(`Всего игрок не угадал: ${playerLoose}.`);
-  console.log(`Игрок ввел неверное значение(не 0 и не 1): ${playerDumb}.`);
+  console.log(
+    `Всего игрок угадал: ${playerWin} - ${
+      (playerWin * 100) / splitData.length
+    }%.`
+  );
+  console.log(
+    `Всего игрок не угадал: ${playerLoose} - ${
+      (playerLoose * 100) / splitData.length
+    }%.`
+  );
+  console.log(
+    `Игрок ввел неверное значение(не 0 и не 1): ${playerDumb} - ${
+      (playerDumb * 100) / splitData.length
+    }%.`
+  );
 });
